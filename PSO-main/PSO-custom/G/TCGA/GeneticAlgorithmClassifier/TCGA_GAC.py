@@ -37,15 +37,17 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 # Load the dataset
-file_path = 'C:/Users/guill/Downloads/TCGA.csv'
+file_input = input("Please enter file input path: ")
+file_path = file_input
 tcga_data = pd.read_csv(file_path)
 
 # Drop any unnamed columns that are likely unnecessary
 tcga_data = tcga_data.loc[:, ~tcga_data.columns.str.contains('^Unnamed')]
 
 # Split the data into features and target
-X = tcga_data.drop(columns=['Class'])
-y = tcga_data['Class']
+class_input = input("Please enter target class name: ")
+X = tcga_data.drop(columns=[class_input])
+y = tcga_data[class_input]
 
 # Define evaluation function
 def evaluate(individual):
@@ -90,7 +92,8 @@ best_individual = tools.selBest(population, 1)[0]
 selected_features = [index for index, val in enumerate(best_individual) if val == 1]
 
 # Output the selected feature names to a file
-output_file_path = 'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/results/features_TCGA_GA.csv'
+output_path_input = input("Please enter output csv file name: ")
+output_file_path = 'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/results/'+ output_path_input + '.csv'
 with open(output_file_path, 'w') as f:
     f.write(','.join(X.columns[selected_features]))
 

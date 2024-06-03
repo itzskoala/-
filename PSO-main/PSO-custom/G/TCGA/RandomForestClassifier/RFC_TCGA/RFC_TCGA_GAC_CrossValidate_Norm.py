@@ -43,13 +43,15 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 import matplotlib.pyplot as plt
 
 # Load dataset
-data = pd.read_csv('PSO-main/data/TCGA_normalized.csv')
+file_input = input("Please enter file input path: ")
+data = pd.read_csv(file_input)
 
 # Drop unnamed columns
 data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
 
 # Load selected features from the feature selection method
-selected_features_df = pd.read_csv('PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/results/features_TCGA_GA.csv')
+selected_features_file = input("Please enter selected features csv file path: ")
+selected_features_df = pd.read_csv(selected_features_file)
 selected_features = selected_features_df.columns.tolist()
 
 # Ensure the selected features are present in the data
@@ -67,7 +69,8 @@ X = pd.get_dummies(X, drop_first=True)
 
 # Encode the target variable
 le = LabelEncoder()
-Y = le.fit_transform(data['Class'])
+class_input = input("Please enter target class name: ")
+Y = le.fit_transform(data[class_input])
 
 # Split data into training and testing sets with stratification
 xtrain, xtest, ytrain, ytest = train_test_split(X, Y, stratify=Y, test_size=0.3, random_state=42)
@@ -105,4 +108,5 @@ results = pd.DataFrame({
     "Accuracy": [accuracy],
     "Mean Cross-Validated Accuracy": [np.mean(cv_scores)]
 })
-results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/RFC_TCGA_GA_accuracies.csv', index=False)
+output_path_input = input("Please enter output csv file name: ")
+results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/' + output_path_input + '.csv', index=False)

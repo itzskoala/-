@@ -1,0 +1,5 @@
+Normalized TCGA dataset
+'PSO-main/data/TCGA_normalized.csv'
+
+Selected features 
+'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/results/features_TCGA_GA.csv'
