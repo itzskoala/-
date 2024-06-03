@@ -52,4 +52,4 @@ results = pd.DataFrame({
     "Model": ["Decision Tree", "Random Forest"],
     "Accuracy": [a, b]
 })
-results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/resultsmodel_accuracies.csv', index=False)
+results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/RFC_TCGA_accuracies.csv', index=False)

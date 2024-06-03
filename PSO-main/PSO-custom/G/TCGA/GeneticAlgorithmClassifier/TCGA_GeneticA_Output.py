@@ -74,7 +74,7 @@ selected_features = [index for index in range(len(best_individual)) if best_indi
 selected_gene_names = X_train.columns[selected_features]
 
 # Output the selected features to a file
-output_file_path = '/mnt/data/selected_features.txt'
+output_file_path = 'PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/results_TCGA_GA.csv'
 with open(output_file_path, 'w') as f:
     for feature in selected_gene_names:
         f.write(f"{feature}\n")
