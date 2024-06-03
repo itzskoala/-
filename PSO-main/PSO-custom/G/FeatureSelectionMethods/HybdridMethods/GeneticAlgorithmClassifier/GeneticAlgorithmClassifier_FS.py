@@ -94,7 +94,7 @@ selected_features = [index for index, val in enumerate(best_individual) if val =
 
 # Output the selected feature names to a file
 output_path_input = input("Please enter output csv file name: ")
-output_file_path = 'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/features/'+ output_path_input + '.csv'
+output_file_path = 'PSO-main/PSO-custom/G/FeatureSelectionMethods/HybdridMethods/GeneticAlgorithmClassifier/features/'+ output_path_input + '.csv'
 with open(output_file_path, 'w') as f:
     f.write(','.join(X.columns[selected_features]))
 

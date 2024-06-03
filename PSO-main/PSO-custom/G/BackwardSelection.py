@@ -4,7 +4,7 @@ from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.linear_model import LogisticRegression
 
 
-data_folder = 'DATA'
+data_folder = 'PSO-main/data'
 input_data = input("Provide the name of the csv file: ")
 file_path = os.path.join(data_folder, input_data)
 

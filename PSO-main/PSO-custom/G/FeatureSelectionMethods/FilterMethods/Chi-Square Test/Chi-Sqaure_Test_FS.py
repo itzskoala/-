@@ -31,6 +31,6 @@ def select_relevant_features(input_csv, output_csv):
 
 if __name__ == "__main__":
     input_csv = input("Enter the path to the input CSV file: ")
-    output_csv = input("Enter the path to the output CSV file: ")
-    
+    output_csv_input = input("Enter the path to the output CSV file: ")
+    output_csv = 'PSO-main/PSO-custom/G/FeatureSelectionMethods/FilterMethods/Chi-Square Test/features/features_'+ output_csv_input + '.csv'
     select_relevant_features(input_csv, output_csv)
