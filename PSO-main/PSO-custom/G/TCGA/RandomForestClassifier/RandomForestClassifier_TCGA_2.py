@@ -46,3 +46,10 @@ b = accuracy_score(ytest, ypred2)
 # Print the accuracies
 print("Accuracy of Decision Tree Classifier:", a)
 print("Accuracy of Random Forest Classifier:", b)
+
+# Save results to a CSV file
+results = pd.DataFrame({
+    "Model": ["Decision Tree", "Random Forest"],
+    "Accuracy": [a, b]
+})
+results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/resultsmodel_accuracies.csv', index=False)
