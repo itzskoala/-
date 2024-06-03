@@ -1,2 +1,2 @@
-Model,Accuracy
-Random Forest,0.3900414937759336
+Model,Accuracy,Mean Cross-Validated Accuracy
+Random Forest,0.991701244813278,0.99875
