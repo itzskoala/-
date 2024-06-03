@@ -45,9 +45,10 @@ tcga_data = pd.read_csv(file_path)
 tcga_data = tcga_data.loc[:, ~tcga_data.columns.str.contains('^Unnamed')]
 
 # Split the data into features and target
-class_input = input("Please enter target class name: ")
-X = tcga_data.drop(columns=[class_input])
-y = tcga_data[class_input]
+
+# Select features and target
+X = tcga_data.iloc[:, :-1]  # Select all columns except the last one
+y = tcga_data.iloc[:, -1]   # Select the last column
 
 # Define evaluation function
 def evaluate(individual):
@@ -93,7 +94,7 @@ selected_features = [index for index, val in enumerate(best_individual) if val =
 
 # Output the selected feature names to a file
 output_path_input = input("Please enter output csv file name: ")
-output_file_path = 'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/results/'+ output_path_input + '.csv'
+output_file_path = 'PSO-main/PSO-custom/G/TCGA/GeneticAlgorithmClassifier/features/'+ output_path_input + '.csv'
 with open(output_file_path, 'w') as f:
     f.write(','.join(X.columns[selected_features]))
 

@@ -10,7 +10,7 @@ Description: This script performs classification on the TCGA dataset using a Ran
 - Results are saved to a specified CSV file.
 
 Steps:
-1. Load the TCGA dataset and clean it by removing unnamed columns.
+1. Load the dataset and clean it by removing unnamed columns.
 2. Load the selected features from a CSV file.
 3. Ensure the selected features are present in the dataset.
 4. Separate the features (X) and target variable (Y).
@@ -47,7 +47,7 @@ file_input = input("Please enter file input path: ")
 data = pd.read_csv(file_input)
 
 # Drop unnamed columns
-data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
+data = data.iloc[:, ~data.columns.str.contains('^Unnamed')]
 
 # Load selected features from the feature selection method
 selected_features_file = input("Please enter selected features csv file path: ")
@@ -69,8 +69,7 @@ X = pd.get_dummies(X, drop_first=True)
 
 # Encode the target variable
 le = LabelEncoder()
-class_input = input("Please enter target class name: ")
-Y = le.fit_transform(data[class_input])
+Y = le.fit_transform(data.iloc[:, -1])  # Corrected line
 
 # Split data into training and testing sets with stratification
 xtrain, xtest, ytrain, ytest = train_test_split(X, Y, stratify=Y, test_size=0.3, random_state=42)
@@ -109,4 +108,4 @@ results = pd.DataFrame({
     "Mean Cross-Validated Accuracy": [np.mean(cv_scores)]
 })
 output_path_input = input("Please enter output csv file name: ")
-results.to_csv('PSO-main/PSO-custom/G/TCGA/RandomForestClassifier/results/' + output_path_input + '.csv', index=False)
+results.to_csv('PSO-main/PSO-custom/G/RandomForestClassifier/results/' + output_path_input + '.csv', index=False)
